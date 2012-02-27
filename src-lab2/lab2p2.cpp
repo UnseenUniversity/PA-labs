@@ -2,27 +2,41 @@
 #include <vector>
 
 #define CEIL(a, b) ((a) / (b) + ((a) % (b) ? 1 : 0))
+using namespace std;
 
 /* Modelam o fractie ca fiind o pereche (numarator, numitor). */
-typedef std::pair<long long, long long> Fractie;
+typedef pair<long long, long long> Fractie;
 
-std::vector<Fractie> descompunere_fractii_egiptene(long long x, long long y)
+long long gcd( long long x, long long y )
 {
-  std::vector<Fractie> v;
+	if( !y ) return x;
+	return gcd( y, x%y );
+}
+
+
+vector<Fractie> descompunere_fractii_egiptene(long long x, long long y)
+{
+  vector<Fractie> v;
    
+  int T=0;
   while( x )
   {
-  	if( x == -1 )
+  	if( x == 1 )
   	{
-  		v.push_back( Fractie(-1,y) );
+  		v.push_back( Fractie(1,y) );
   		break;
   	}
   	
-  	v.push_back( Fractie(1,y/x) );
+  	v.push_back( Fractie(1, CEIL(y,x) ) );
 	
 	long long x1=x,y1=y;
-	x= -(y1 % x1);
-	y= y1*(y1/x1);  
+	x= x1 - y1 % x1;
+	y= y1*( CEIL(y1,x1) );
+	
+	long long gcd_ = gcd( x,y );
+	x/=gcd_;
+	y/=gcd_;
+	
   }
  
   return v;
