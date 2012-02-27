@@ -36,7 +36,6 @@ vector<Fractie> descompunere_fractii_egiptene(long long x, long long y)
 	long long gcd_ = gcd( x,y );
 	x/=gcd_;
 	y/=gcd_;
-	
   }
  
   return v;

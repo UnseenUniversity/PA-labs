@@ -10,7 +10,7 @@ using namespace std;
 /* Un material este o pereche (greutate, valoare). */
 typedef pair<int, double> Material;
 
-#define for_each(i,size) for( int i=0; i<size; ++i )
+#define for_each(i,size) for( int i=0,sz=size; i<sz; ++i )
 
 inline bool cmp( const Material& A, const Material& B )
 {
@@ -29,7 +29,7 @@ double val_max(int t, vector<Material>& v)
   	
   	int cant = min( t, v[i].first );
   	t   -= cant;
-  	ans += ( v[i].second * cant );	
+  	ans += ( cant * (v[i].second/v[i].first) );	
   }
   
   return ans;
