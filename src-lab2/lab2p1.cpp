@@ -14,7 +14,7 @@ typedef pair<int, double> Material;
 
 inline bool cmp( const Material& A, const Material& B )
 {
-	return (A.first/A.second)  < (B.first/B.second) ;
+	return (A.first*B.second)  < (B.first*A.second) ;
 }
 
 double val_max(int t, vector<Material>& v)
